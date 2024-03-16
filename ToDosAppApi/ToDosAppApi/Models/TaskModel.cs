@@ -6,5 +6,6 @@ namespace ToDosAppApi.Models
     {
         public DateTime? CompletedTask { get; set; }
         public TaskState State { get; set; }
+        public string Description { get; set; }
     }
 }

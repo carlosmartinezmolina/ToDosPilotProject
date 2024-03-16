@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDosAppApi.DBContext;
 
@@ -11,9 +12,11 @@ using ToDosAppApi.DBContext;
 namespace ToDosAppApi.Migrations
 {
     [DbContext(typeof(ToDosContext))]
-    partial class ToDosContextModelSnapshot : ModelSnapshot
+    [Migration("20240316180325_AddFieldInTaskModelTable")]
+    partial class AddFieldInTaskModelTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

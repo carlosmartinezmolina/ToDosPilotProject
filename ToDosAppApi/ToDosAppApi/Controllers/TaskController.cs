@@ -14,11 +14,34 @@ namespace ToDosAppApi.Controllers
             this._taskModelService = taskModelService;
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<TaskModel>> GetAlltaskModels()
+        [HttpGet("GetAllTaskModels")]
+        public async Task<IEnumerable<TaskModel>> GetAllTaskModels()
         {
-
             return await _taskModelService.GetAll();
         }
+
+        [HttpPost("AddTask")]
+        public async Task AddTask(TaskModel entity)
+        {
+            await _taskModelService.Add(entity);
+        }
+
+        [HttpDelete("DeleteTask")]
+        public async Task DeleteTask(Guid Id)
+        {
+            await _taskModelService.Delete(Id);
+        }
+
+        [HttpGet("GetTaskById")]
+        public async Task<TaskModel> GetTaskById(Guid Id)
+        {
+            return await _taskModelService.GetById(Id);
+        }
+        [HttpPost("UpdateTask")]
+        public async Task UpdateTask(TaskModel entity)
+        {
+            await _taskModelService.Update(entity);
+        }
+
     }
 }
