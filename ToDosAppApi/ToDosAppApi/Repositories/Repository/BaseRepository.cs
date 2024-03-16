@@ -16,7 +16,7 @@ namespace ToDosAppApi.Repositories.Repository
 
         public async Task Add(T entity)
         {
-            _context.Set<T>().Add(entity);
+            await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
@@ -41,7 +41,7 @@ namespace ToDosAppApi.Repositories.Repository
 
         public async Task Update(T entity)
         {
-            await _context.Set<T>().AddAsync(entity);
+            _context.Set<T>().Update(entity);
             await _context.SaveChangesAsync();
         }
     }

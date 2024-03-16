@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ToDosAppApi.Enums;
 using ToDosAppApi.Models;
 using ToDosAppApi.Services.IService;
 
@@ -15,15 +16,30 @@ namespace ToDosAppApi.Controllers
         }
 
         [HttpGet("GetAllTaskModels")]
-        public async Task<IEnumerable<TaskModel>> GetAllTaskModels()
+        public async Task<IEnumerable<TaskModel>> GetAllTaskModels(string? textFilter, TaskState? taskState)
         {
-            return await _taskModelService.GetAll();
+            var tasks = await _taskModelService.GetAll();
+            var result = tasks
+                .Where(t => (
+                !string.IsNullOrEmpty(textFilter) ? t.Description.Contains(textFilter) : true) 
+                && (taskState != null ? t.State == taskState : true))
+                .OrderBy(e => e.State)
+                .ThenBy(d => d.CreatedDate)
+                .ThenBy(c => c.CompletedTask)
+                .ToList();
+            return result;
         }
 
         [HttpPost("AddTask")]
         public async Task AddTask(TaskModel entity)
         {
-            await _taskModelService.Add(entity);
+            TaskModel newTask = new TaskModel
+            {
+                CreatedDate = DateTime.Now,
+                State = TaskState.ToDo,
+                Description = entity.Description
+            };
+            await _taskModelService.Add(newTask);
         }
 
         [HttpDelete("DeleteTask")]
@@ -37,10 +53,18 @@ namespace ToDosAppApi.Controllers
         {
             return await _taskModelService.GetById(Id);
         }
+
         [HttpPost("UpdateTask")]
         public async Task UpdateTask(TaskModel entity)
         {
-            await _taskModelService.Update(entity);
+            if(entity.State == TaskState.ToDo)
+                await _taskModelService.Update(entity);
+        }
+
+        [HttpPost("ChangeTaskStatus")]
+        public async Task ChangeTaskStatus(Guid id)
+        {
+            await _taskModelService.ChangeTaskStatus(id);
         }
 
     }
