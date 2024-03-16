@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ToDosAppApi.Models;
+using ToDosAppApi.Services.IService;
 
 namespace ToDosAppApi.Controllers
 {
@@ -6,12 +8,17 @@ namespace ToDosAppApi.Controllers
     [Route("[controller]")]
     public class TaskController
     {
-        public TaskController() { }
+        private readonly ITaskModelService _taskModelService;
+        public TaskController(ITaskModelService taskModelService) 
+        {
+            this._taskModelService = taskModelService;
+        }
 
         [HttpGet]
-        public IEnumerable<Task> Get()
+        public async Task<IEnumerable<TaskModel>> GetAlltaskModels()
         {
-            return new List<Task>();
+
+            return await _taskModelService.GetAll();
         }
     }
 }
