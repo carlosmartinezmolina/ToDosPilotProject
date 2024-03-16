@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using ToDosAppApi.Enums;
 using ToDosAppApi.Models;
 using ToDosAppApi.Services.IService;
@@ -19,14 +20,14 @@ namespace ToDosAppApi.Controllers
         public async Task<IEnumerable<TaskModel>> GetAllTaskModels(string? textFilter, TaskState? taskState)
         {
             var tasks = await _taskModelService.GetAll();
-            var result = tasks
+            var temp = tasks
                 .Where(t => (
                 !string.IsNullOrEmpty(textFilter) ? t.Description.Contains(textFilter) : true) 
                 && (taskState != null ? t.State == taskState : true))
-                .OrderBy(e => e.State)
-                .ThenBy(d => d.CreatedDate)
-                .ThenBy(c => c.CompletedTask)
                 .ToList();
+            var todoList = temp.Where(s => s.State == TaskState.ToDo).OrderBy(o => o.CreatedDate).ToList();
+            var completedList = temp.Where(s => s.State == TaskState.Completed).OrderByDescending(o => o.CompletedTask).ToList();
+            var result = todoList.Concat(completedList);
             return result;
         }
 
