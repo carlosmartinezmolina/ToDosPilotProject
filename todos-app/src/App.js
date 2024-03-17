@@ -1,6 +1,7 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import TaskView from './components/TaskView/TaskView';
+import Home from './components/home/Home';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <TaskView />
+      <Home />
     </div>
   );
 }

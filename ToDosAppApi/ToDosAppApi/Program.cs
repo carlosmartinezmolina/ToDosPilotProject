@@ -34,6 +34,17 @@ builder.Services.AddScoped<ToDosContext>();
 builder.Services.AddScoped<ITaskModelService, TaskModelService>();
 builder.Services.AddScoped<ITaskModelRepository, TaskModelRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,6 +55,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAnyOrigin");
 
 app.UseAuthorization();
 

@@ -1,0 +1,24 @@
+.dropdown {
+    position: relative;
+}
+
+.dropdown-icon {
+    cursor: pointer;
+}
+
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.option {
+    cursor: pointer;
+}
+
+.selected-option {
+    margin-top: 10px;
+}

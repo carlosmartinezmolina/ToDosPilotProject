@@ -1,12 +1,16 @@
-import React from "react";
-import TaskList from "./taskList/taskList";
+import React, { useState } from "react";
+import TaskList from "./taskList/TaskList";
+import TaskHeader from './taskHeader/TaskHeader';
 
-const TaskView = () => {
+const TaskView = ({ChangeComponent}) => {
+    const [filterValue, setFiltervalue] = useState('');
+    const [filterOption, setFilterOption] = useState(null);
     return(
-        <div>
-            <h1>To-Dos App</h1>
-            <TaskList />
-        </div>
+        <>
+            <h2 className="text-start mx-2 mb-4">Tasks</h2>
+            <TaskHeader ChangeComponent={ChangeComponent} setFiltervalue={setFiltervalue} setFilterOption={setFilterOption} />
+            <TaskList filterValue={filterValue} filterOption={filterOption} />
+        </>
     )
 };
 

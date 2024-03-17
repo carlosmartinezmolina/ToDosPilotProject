@@ -8,7 +8,7 @@ namespace ToDosAppApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TaskController
+    public class TaskController: ControllerBase
     {
         private readonly ITaskModelService _taskModelService;
         public TaskController(ITaskModelService taskModelService) 
@@ -44,28 +44,31 @@ namespace ToDosAppApi.Controllers
         }
 
         [HttpDelete("DeleteTask")]
-        public async Task DeleteTask(Guid Id)
+        public async Task<OkObjectResult> DeleteTask(Guid id)
         {
-            await _taskModelService.Delete(Id);
+            await _taskModelService.Delete(id);
+            return Ok(new { message = "Success" });
         }
 
         [HttpGet("GetTaskById")]
-        public async Task<TaskModel> GetTaskById(Guid Id)
+        public async Task<TaskModel> GetTaskById(Guid id)
         {
-            return await _taskModelService.GetById(Id);
+            return await _taskModelService.GetById(id);
         }
 
         [HttpPost("UpdateTask")]
-        public async Task UpdateTask(TaskModel entity)
+        public async Task<OkObjectResult> UpdateTask(TaskModel entity)
         {
             if(entity.State == TaskState.ToDo)
                 await _taskModelService.Update(entity);
+            return Ok(new { message = "Success" });
         }
 
         [HttpPost("ChangeTaskStatus")]
-        public async Task ChangeTaskStatus(Guid id)
+        public async Task<OkObjectResult> ChangeTaskStatus(Guid id)
         {
             await _taskModelService.ChangeTaskStatus(id);
+            return Ok(new { message = "Success" });
         }
 
     }
