@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTrashAlt, faSave } from '@fortawesome/free-solid-svg-icons';
 import '../../TaskView.scss';
+import './Task.scss';
 
 const Task = ({item, changeTaskStatus, UpdateTask, DeleteTask}) => {
     const [editing,setEditing] = useState(false);
@@ -29,8 +30,14 @@ const Task = ({item, changeTaskStatus, UpdateTask, DeleteTask}) => {
                 <div className="my-2 d-flex justify-content-between">
                     {editing ? (
                         <>
-                            <div>
+                            <div style={{
+                                    width: '90%',
+                                    textAlign: 'initial'
+                                }}>
                                 <input
+                                style={{
+                                    width: '90%',
+                                }}
                                     className="me-5"
                                     type="text"
                                     value={editedValue}
@@ -43,15 +50,14 @@ const Task = ({item, changeTaskStatus, UpdateTask, DeleteTask}) => {
                         </>
                         ) : (
                             <>
-                                <div>
+                                <div className="col-lg-8 col-md-6 col-sm-2">
                                     <input
-                                            className="mx-2"
+                                            className="me-2"
                                             type="checkbox"
                                             checked={item.state}
                                             onChange={handleChangeCheckbox}
                                         />
                                     <label className="me-5">
-                                        
                                             {item.description}
                                     </label>
                                 </div>

@@ -7,7 +7,7 @@ const TaskView = ({ChangeComponent}) => {
     const [filterOption, setFilterOption] = useState(null);
     return(
         <>
-            <h2 className="text-start mx-2 mb-4">Tasks</h2>
+            <h2 className="text-start me-2 mb-4">Tasks</h2>
             <TaskHeader ChangeComponent={ChangeComponent} setFiltervalue={setFiltervalue} setFilterOption={setFilterOption} />
             <TaskList filterValue={filterValue} filterOption={filterOption} />
         </>

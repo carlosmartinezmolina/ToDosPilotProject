@@ -1,3 +1,37 @@
 .saveIcon {
     color: rgb(12, 90, 167);
 }
+.my-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.my-2 > div {
+    display: flex;
+    align-items: center;
+}
+label {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@media (max-width: 768px) {
+    .my-2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .my-2 > div {
+        display: flex;
+        align-items: center;
+    }
+    label {
+        flex-grow: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

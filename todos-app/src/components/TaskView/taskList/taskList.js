@@ -51,7 +51,7 @@ const TaskList = ({filterValue, filterOption}) => {
         <>
             {tasks != null && (
                 <> 
-                    <ul className="col-lg-12 col-md-8 col-sm-6">
+                    <ul className="col-lg-12 col-md-8 col-sm-6 ps-0">
                         {
                             tasks.map((item, index) => {
                                 return (

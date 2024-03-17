@@ -26,7 +26,7 @@ const AddTaskView = ({ChangeComponent}) => {
     };
     return(
         <>
-            <h2 className="text-start mx-2 mb-4">Add New Task</h2>
+            <h2 className="text-start me-2 mb-4">Add New Task</h2>
             <div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group col-lg-12 col-md-8 col-sm-6 text-start">
@@ -40,7 +40,7 @@ const AddTaskView = ({ChangeComponent}) => {
                         />
                         {error && <div className="text-danger">{error}</div>}
                     </div>
-                    <div className="container d-flex justify-content-end">
+                    <div className="container d-flex justify-content-end mt-3 col-lg-12 col-md-8 col-sm-6">
                         <button type="submit" className="btn btn-primary mx-3">Submit</button>
                         <button className="btn btn-secondary text-end" onClick={handlebuttonClick}>Get back To List</button>
                     </div>
